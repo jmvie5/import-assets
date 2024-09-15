@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# get all args (extentions to import) in an array
+# get all args (extensions to import) in an array
 args=()
 while [[ "$#" -gt 0 ]]; do
     case $1 in
@@ -12,14 +12,14 @@ done
 # run tests
 # No arg provided
 if [ "${args[0]}" == "" ]; then
-    echo "You need to provide at least one extention you want to import"
+    echo "You need to provide at least one extension you want to import"
     exit 1 
 fi
 
-# No file with that extention
+# No file with that extension
 isFile=false
 for ext in "${args[@]}"; do
-    for f in *.$ext; do
+    for f in *."$ext"; do
         if [[ -f "$f" && "${f%.*}" != "index" ]]; then
             isFile=true
         fi
@@ -32,7 +32,7 @@ for ext in "${args[@]}"; do
 done
 
 if [ "$isFile" = false ] ; then
-    echo "No file found with extentions provided"
+    echo "No file found with extensions provided"
     exit 1
 fi
 
@@ -55,8 +55,10 @@ fi
 
 
 # main
+# create empty index
 touch "index.$indexExt"
 
+# loop trough files with provided extensions and add the import statement
 for ext in "${args[@]}"; do
     for f in *."$ext"; do
         if [[ -f "$f" && "${f%.*}" != "index" ]]; then
@@ -65,17 +67,20 @@ for ext in "${args[@]}"; do
     done
 done
 
+# add new line and export statement
 echo "" >> "index.$indexExt"
 echo "export {" >> "index.$indexExt"
 
+# loop trough files with provided extensions and add the exported variable
 for ext in "${args[@]}"; do
-    for f in *.$ext; do
+    for f in *."$ext"; do
         if [[ -f "$f" && "${f%.*}" != "index" ]]; then
             echo "    ${f%.*}," >> "index.$indexExt"
         fi
     done
 done
 
+# close the export statement
 echo "}" >> "index.$indexExt"
 
 echo "Done!"
