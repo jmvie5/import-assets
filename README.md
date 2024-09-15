@@ -1,20 +1,49 @@
 # import_assets
-Bash script to import multiple assets into a typescript or javascript project.
+Bash script to import multiple assets into your React project.
 
-# Why?
-Too often I had to import many assets into a web project by copying paths and typing `import file from 'PATH'`. No more! This automate the process to create a clean index file from with I can use the assets into my project.
+### Why?
+Too often I had to import many assets into my React app by copying paths and typing `import file from 'PATH'`. No more! This automates the process to create a clean index file from which I can use the assets in my project.
 
-# Add globaly
+## Add globally
 1. Clone the repo somewhere in your system.
-2. Make sure you give permission to execute main.sh `chmod +x ~/path/to/import_assets/main.sh`
-# MacOS
-3. Go in your .bash_profile and add the following line `alias import-assets='~/path/to/import_assets/main.sh'`
-4. You can now use `import-assets` globaly.
+2. Make sure you give permission to run main.sh `chmod +x ~/path/to/import_assets/main.sh`
+### MacOS
+3. Edit .bash_profile and add the following line `alias import-assets='~/path/to/import_assets/main.sh'`
+4. You can now use `import-assets` globally.
 
-# Usage
-
-Go in the directory you want to create an index file for your assets and run `import-assets` with as many extentions as you want. i.e. `import-assets jpg png svg`
+## Usage
+Go to the directory where you want to create an index file for your assets and run `import-assets` with as many extensions as you want.
 
 Voilà! You can now go and use your assets in your project.
 
-Disclamer : may be full of bugs and unwanted behaviours, I don't know what I'm doing. But hey, MIT licensed go nuts with it!
+This will use the filename (before the extension) as the variable for the import. Make sure your files don't start with a number, otherwise the import statement won't work. 
+
+### Example
+Directory :
+```bash
+assets
+├── arrowLeftIcon.svg
+├── arrowRightIcon.svg
+├── cat.jpg
+├── dog.png
+├── elephant.heic
+└── picture.webp
+```
+Input : `import-assets jpg png svg`
+
+Output :
+```typescript
+import cat from "./cat.jpg"
+import dog from "./dog.png"
+import arrowLeftIcon from "./arrowLeftIcon.svg"
+import arrowRightIcon from "./arrowRightIcon.svg"
+
+export {
+    cat,
+    dog,
+    arrowLeftIcon,
+    arrowRightIcon,
+}
+```
+
+Disclamer : May be full of bugs and unwanted behavior, I don't know what I'm doing. But hey, MIT licensed, go nuts with it!
