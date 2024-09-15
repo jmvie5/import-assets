@@ -8,7 +8,7 @@ Too often I had to import many assets into my React app by copying paths and typ
 1. Clone the repo somewhere in your system.
 2. Make sure you give permission to run main.sh `chmod +x ~/path/to/import_assets/main.sh`
 ### MacOS
-3. Edit .bash_profile and add the following line `alias import-assets='~/path/to/import_assets/main.sh'`
+3. Edit `~/.bash_profile` and add the following line `alias import-assets='~/path/to/import_assets/main.sh'`
 4. You can now use `import-assets` globally.
 
 ## Usage
