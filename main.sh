@@ -65,7 +65,8 @@ for ext in "${args[@]}"; do
     done
 done
 
-echo "\nexport {" >> "index.$indexExt"
+echo "" >> "index.$indexExt"
+echo "export {" >> "index.$indexExt"
 
 for ext in "${args[@]}"; do
     for f in *.$ext; do
