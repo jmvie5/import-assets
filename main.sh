@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# help
+usage="
+    Bash script to import multiple assets into your React project.
+
+    Args: all extensions you want to import in your index file.
+    Example: ~$ import-assets jpg png svg
+"
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+  echo "$usage"
+  exit 0
+fi
+
 # get all args (extensions to import) in an array
 args=()
 while [[ "$#" -gt 0 ]]; do
@@ -12,7 +24,8 @@ done
 # run tests
 # No arg provided
 if [ "${args[0]}" == "" ]; then
-    echo "You need to provide at least one extension you want to import"
+    echo "Error: You need to provide at least one extension you want to import"
+    echo "$usage"
     exit 1 
 fi
 
