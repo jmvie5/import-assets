@@ -5,11 +5,14 @@ Bash script to import multiple assets into your React project.
 Too often I had to import many assets into my React app by copying paths and typing `import file from 'PATH'`. No more! This automates the process to create a clean index file from which I can use the assets in my project.
 
 ## Add globally
-1. Clone the repo somewhere in your system.
-2. Make sure you give permission to run main.sh `chmod +x ~/path/to/import_assets/main.sh`
+1. Clone the repo in `~/bin`.
+2. Make sure you give permission to run main.sh `chmod +x ~/bin/import_assets/main.sh`
+
+### Linux
+3. Create `~/.bash_aliases` file if it does not exist and add the following line `alias import-assets='~/bin/import_assets/main.sh'`
 ### MacOS
-3. Edit `~/.bash_profile` and add the following line `alias import-assets='~/path/to/import_assets/main.sh'`
-4. You can now use `import-assets` globally.
+3. Edit `~/.bash_profile` and add the following line `alias import-assets='~/bin/import_assets/main.sh'`
+
 
 ## Usage
 Go to the directory where you want to create an index file for your assets and run `import-assets` with as many extensions as you want.
