@@ -6,12 +6,12 @@ Too often I had to import many assets into my React app by copying paths and typ
 
 ## Add globally
 1. Clone the repo in `~/bin`.
-2. Make sure you give permission to run main.sh `chmod +x ~/bin/import_assets/main.sh`
+2. Make sure you give permission to run main.sh `chmod +x ~/bin/import-assets/main.sh`
 
 ### Linux
-3. Create `~/.bash_aliases` file if it does not exist and add the following line `alias import-assets='~/bin/import_assets/main.sh'`
+3. Create `~/.bash_aliases` file if it does not exist and add the following line `alias import-assets='~/bin/import-assets/main.sh'`
 ### MacOS
-3. Edit `~/.bash_profile` and add the following line `alias import-assets='~/bin/import_assets/main.sh'`
+3. Edit `~/.bash_profile` and add the following line `alias import-assets='~/bin/import-assets/main.sh'`
 
 
 ## Usage

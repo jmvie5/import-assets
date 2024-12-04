@@ -50,7 +50,7 @@ if [ "$isFile" = false ] ; then
 fi
 
 # ask if js or ts
-read -p 'Are you using ts or js? (ts by default) ' indexExt
+read -p 'Are you using ts or js? (TS/js) ' indexExt
 if [ ! "$indexExt" = 'js' ]; then
     indexExt='ts'
 fi
@@ -75,7 +75,8 @@ touch "index.$indexExt"
 for ext in "${args[@]}"; do
     for f in *."$ext"; do
         if [[ -f "$f" && "${f%.*}" != "index" ]]; then
-            echo "import ${f%.*} from \"./$f\"" >> "index.$indexExt"
+            fileName="${f//-/_}"
+            echo "import ${fileName%.*} from \"./$f\"" >> "index.$indexExt"
         fi
     done
 done
@@ -88,7 +89,8 @@ echo "export {" >> "index.$indexExt"
 for ext in "${args[@]}"; do
     for f in *."$ext"; do
         if [[ -f "$f" && "${f%.*}" != "index" ]]; then
-            echo "    ${f%.*}," >> "index.$indexExt"
+            fileName="${f//-/_}"
+            echo "    ${fileName%.*}," >> "index.$indexExt"
         fi
     done
 done
