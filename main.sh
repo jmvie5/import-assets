@@ -38,7 +38,12 @@ for ext in "${args[@]}"; do
         fi
         # if start with number, exit with error
         if [[ "$f" =~ ^[0-9] ]]; then
-            echo "Oups! Your file ($f) starts with a number. This will cause problems when importing in your index file"
+            echo "Oups! The file $f starts with a number. This will cause problems when importing in your index file."
+            exit 1
+        fi
+        # if file contain a special character
+        if [[ "$f" =~ [^a-zA-Z0-9._-] ]]; then
+            echo "Oups! The file $f contains a special character that will cause problems when importing in your index file."
             exit 1
         fi
     done
@@ -75,7 +80,8 @@ touch "index.$indexExt"
 for ext in "${args[@]}"; do
     for f in *."$ext"; do
         if [[ -f "$f" && "${f%.*}" != "index" ]]; then
-            fileName="${f//-/_}"
+            # replace special chars by "_"
+            fileName="${f//[^[:alnum:].]/_}"
             echo "import ${fileName%.*} from \"./$f\"" >> "index.$indexExt"
         fi
     done
