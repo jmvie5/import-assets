@@ -81,7 +81,10 @@ for ext in "${args[@]}"; do
     for f in *."$ext"; do
         if [[ -f "$f" && "${f%.*}" != "index" ]]; then
             # replace special chars by "_"
-            fileName="${f//[^[:alnum:].]/_}"
+            base="${f%.*}"
+            ext="${f##*.}"
+            base="${base//[^[:alnum:]]/_}"
+            fileName="${base}.${ext}"
             echo "import ${fileName%.*} from \"./$f\"" >> "index.$indexExt"
         fi
     done
@@ -95,7 +98,11 @@ echo "export {" >> "index.$indexExt"
 for ext in "${args[@]}"; do
     for f in *."$ext"; do
         if [[ -f "$f" && "${f%.*}" != "index" ]]; then
-            fileName="${f//-/_}"
+            # replace special chars by "_", same as before to match the import statement
+            base="${f%.*}"
+            ext="${f##*.}"
+            base="${base//[^[:alnum:]]/_}"
+            fileName="${base}.${ext}"
             echo "    ${fileName%.*}," >> "index.$indexExt"
         fi
     done
