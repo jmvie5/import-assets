@@ -1,4 +1,4 @@
-# import_assets
+# import-assets
 Bash script to import multiple assets into your React project.
 
 ### Why?
